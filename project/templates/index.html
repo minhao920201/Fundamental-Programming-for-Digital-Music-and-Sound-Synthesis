@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle UI</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="circle">
+            <div class="A" data-position="1" data-note="A">A</div>
+            <div class="B" data-position="2" data-note="B">B</div>
+            <div class="C" data-position="3" data-note="C">C</div>
+            <div class="D" data-position="4" data-note="D">D</div>
+            <div class="E" data-position="5" data-note="E">E</div>
+            <div class="F" data-position="6" data-note="F">F</div>
+            <div class="G" data-position="7" data-note="G">G</div>
+            <div class="H" data-position="8"><img src="/static/img/main.png" alt="Profile"></div>
+            <div class="star">★</div>
+        </div>
+        <div class="instrument">instrument</div>
+        <div class="color-picker">
+            <div data-color="red" data-instrument="piano" style="background: red;"></div>
+            <div data-color="orange" data-instrument="violin" style="background: orange;"></div>
+            <div data-color="yellow" data-instrument="flute" style="background: yellow;"></div>
+            <div data-color="lime" data-instrument="guitar" style="background: lime;"></div>
+            <div data-color="blue" data-instrument="trumpet" style="background: blue;"></div>
+            <div data-color="purple" data-instrument="violoncello" style="background: rgba(202, 109, 202, 0.956);"></div>
+        </div>
+        <button class="generate-btn">Generate ★</button>
+    </div>
+    <div class="record-container">
+        <h3>Record</h3>
+        <ul id="record-list"></ul>
+    </div>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
