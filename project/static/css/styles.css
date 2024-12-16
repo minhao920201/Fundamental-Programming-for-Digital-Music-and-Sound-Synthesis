@@ -168,3 +168,33 @@ body {
     font-weight: bold;
     color: #f0a500;
 }
+
+#random-container {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+#random-button {
+    width: 100px;
+    height: 40px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px; /* 状态文本与按钮之间的间距 */
+}
+
+#random-button:hover {
+    background-color: darkgray;
+}
+
+#random-status {
+    font-size: 14px;
+    color: white;
+}
+

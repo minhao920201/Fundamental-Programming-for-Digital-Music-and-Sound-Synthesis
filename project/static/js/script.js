@@ -6,6 +6,7 @@ function initializePage() {
     document.querySelector(".instrument").textContent = currentInstrument;
 }
 
+
 // 更新背景和樂器
 document.querySelectorAll(".color-picker div").forEach(colorDiv => {
     colorDiv.addEventListener("click", () => {
@@ -79,6 +80,41 @@ document.querySelector(".generate-btn").addEventListener("click", () => {
         })
         .catch(err => console.error(err));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const randomButton = document.getElementById("random-button");
+    const randomStatus = document.getElementById("random-status");
+    let isRandomOn = false; // 初始状态为 OFF
+
+    // 监听按钮点击事件
+    randomButton.addEventListener("click", () => {
+        isRandomOn = !isRandomOn; // 切换状态
+        const randomText = isRandomOn ? "ON" : "OFF";
+
+        // 更新状态文本
+        randomStatus.textContent = randomText;
+
+        // 将状态发送到后端
+        fetch("/toggle_random", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ random: randomText.toLowerCase() }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Random Mode Updated:", data);
+            })
+            .catch((error) => {
+                console.error("Error updating random mode:", error);
+            });
+    });
+});
+
+
+
+
 
 // 在頁面載入時初始化
 window.onload = initializePage;
