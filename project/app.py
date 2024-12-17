@@ -32,14 +32,12 @@ def index():
 
 @app.route('/favicon.ico')
 def favicon():
-    return '', 204  # 返回 204 No Content 响应
+    return '', 204  # 返回 204 No Content
 
 
+# 接收前端按下的音符和樂器，記錄音符到對應樂器。
 @app.route("/update_instrument", methods=["POST"])
 def update_instrument():
-    """
-    接收前端按下的音符和樂器，記錄音符到對應樂器。
-    """
     data = request.get_json()
     instrument = data.get("instrument")
     note = data.get("note")
@@ -49,7 +47,7 @@ def update_instrument():
         return jsonify({"message": f"Note '{notes_mapping[note]}' added to {instrument}"}), 200
     return jsonify({"message": "Invalid data"}), 400
 
-# 定义一个全局变量来存储随机模式状态
+# 定義一個global variable來儲存隨機狀態
 random_mode = False
 
 @app.route('/toggle_random', methods=['POST'])
@@ -57,17 +55,15 @@ def toggle_random():
     global random_mode
     data = request.get_json()
     if 'random' in data:
-        random_mode = data['random'] == 'on'  # 更新全局随机模式状态
+        random_mode = data['random'] == 'on'  # 更新隨機狀態
         return jsonify({"message": "Random mode updated", "status": random_mode})
     else:
         return jsonify({"error": "Invalid request"}), 400
 
 
+# 根據記錄的音符為每個樂器生成音樂，並保存為 MIDI 檔案。
 @app.route("/generate_music", methods=["POST"])
 def generate_music():
-    """
-    根據記錄的音符為每個樂器生成音樂，並保存為 MIDI 檔案。
-    """
     global random_mode
     # random: ON
     if random_mode:
@@ -172,12 +168,12 @@ def generate_music():
 
         # If there are at least five note C in violin list then use 小魔女doremi.mid upside down to play and generate music
         elif violin_notes.count("C5") >= 5:
-            # 倒序處理
+            # reverse處理
             myFile1 = m21.converter.parse("小魔女doremi.midi")
             reversed_stream = m21.stream.Stream()
 
             for part in myFile1.parts:
-                # 取得所有音符和和弦，並倒序
+                # 取得所有音符和和弦，並reverse
                 notes_and_chords = list(part.recurse().notes)
                 reversed_notes_and_chords = notes_and_chords[::-1]
                 reversed_part = m21.stream.Part()
@@ -186,7 +182,7 @@ def generate_music():
                     reversed_part.append(copy.deepcopy(element))
                 reversed_stream.append(reversed_part)
 
-            # 保存倒序後的 MIDI 檔案
+            # 保存reverse後的 MIDI 檔案
             output_file = "static/generated_music.mid"
             reversed_stream.write("midi", fp=output_file)
 
@@ -226,11 +222,9 @@ def generate_music():
 
     return send_file(output_file, as_attachment=True, download_name="generated_music.mid")
 
+# 清空儲存的樂器和音符資料。
 @app.route("/reset_instrument_data", methods=["POST"])
 def reset_instrument_data():
-    """
-    清空儲存的樂器和音符資料。
-    """
     for instrument in instrument_data:
         instrument_data[instrument] = []
     return jsonify({"message": "Instrument data reset"}), 200

@@ -186,7 +186,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-bottom: 10px; /* 状态文本与按钮之间的间距 */
+    margin-bottom: 10px; 
 }
 
 #random-button:hover {

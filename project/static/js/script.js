@@ -84,17 +84,17 @@ document.querySelector(".generate-btn").addEventListener("click", () => {
 document.addEventListener("DOMContentLoaded", () => {
     const randomButton = document.getElementById("random-button");
     const randomStatus = document.getElementById("random-status");
-    let isRandomOn = false; // 初始状态为 OFF
+    let isRandomOn = false; // 初始狀態為 OFF
 
-    // 监听按钮点击事件
+    // 檢查按紐點擊事件
     randomButton.addEventListener("click", () => {
-        isRandomOn = !isRandomOn; // 切换状态
+        isRandomOn = !isRandomOn; // 切换狀態
         const randomText = isRandomOn ? "ON" : "OFF";
 
-        // 更新状态文本
+        // 更新狀態文本
         randomStatus.textContent = randomText;
 
-        // 将状态发送到后端
+        // 將狀態發送到後端
         fetch("/toggle_random", {
             method: "POST",
             headers: {
