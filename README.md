@@ -15,3 +15,5 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
+## How to use ?
++ [Manual](https://github.com/minhao920201/Fundamental-Programming-for-Digital-Music-and-Sound-Synthesis/blob/main/project/%E4%BD%BF%E7%94%A8%E8%AA%AA%E6%98%8E.pdf)
